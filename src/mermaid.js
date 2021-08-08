@@ -61,10 +61,10 @@ const init = function () {
     nodes === undefined
       ? document.querySelectorAll('.mermaid')
       : typeof nodes === 'string'
-      ? document.querySelectorAll(nodes)
-      : nodes instanceof window.Node
-      ? [nodes]
-      : nodes; // Last case  - sequence config was passed pick next
+        ? document.querySelectorAll(nodes)
+        : nodes instanceof window.Node
+          ? [nodes]
+          : nodes; // Last case  - sequence config was passed pick next
 
   log.debug('Start On Load before: ' + mermaid.startOnLoad);
   if (typeof mermaid.startOnLoad !== 'undefined') {
@@ -189,6 +189,7 @@ const mermaid = {
   mermaidAPI,
   parse: mermaidAPI.parse,
   render: mermaidAPI.render,
+  renderSSR: mermaidAPI.renderSSR,
 
   init,
   initialize,

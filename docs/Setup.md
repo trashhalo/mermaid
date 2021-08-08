@@ -1102,6 +1102,31 @@ mermaidAPI.initialize({
     provided a hidden div will be inserted in the body of the page instead. The element will be removed when rendering is
     completed.
 
+## renderSSR
+
+Function that renders an svg with a graph from a chart definition. To be used with SSR. Usage example below.
+
+```js
+mermaidAPI.initialize({
+     startOnLoad:false
+ });
+ $(function(){
+     const graphDefinition = 'graph TB\na-->b';
+     const cb = function(svgGraph){
+         console.log(svgGraph);
+     };
+     const [svg, bind] = mermaidAPI.render(graphDefinition, el);
+ });
+```
+
+### Parameters
+
+-   `_txt`  the graph definition
+-   `container`  selector to element in which a div with the graph temporarily will be inserted. In one is
+    provided a hidden div will be inserted in the body of the page instead. The element will be removed when rendering is
+    completed.
+-   `document`  allow callers to pass in document (optional, default `document`)
+
 ## 
 
 ## mermaidAPI configuration defaults

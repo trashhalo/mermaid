@@ -656,7 +656,7 @@ module.exports = function(module) {
 /*! exports provided: name, version, description, main, keywords, scripts, repository, author, license, standard, dependencies, devDependencies, files, sideEffects, husky, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"mermaid\",\"version\":\"8.11.4\",\"description\":\"Markdownish syntax for generating flowcharts, sequence diagrams, class diagrams, gantt charts and git graphs.\",\"main\":\"dist/mermaid.core.js\",\"keywords\":[\"diagram\",\"markdown\",\"flowchart\",\"sequence diagram\",\"gantt\",\"class diagram\",\"git graph\"],\"scripts\":{\"build:development\":\"webpack --progress --color\",\"build:production\":\"yarn build:development --mode production --config webpack.config.prod.babel.js\",\"build\":\"yarn build:development && yarn build:production\",\"postbuild\":\"documentation build src/mermaidAPI.js src/config.js src/defaultConfig.js --shallow -f md --markdown-toc false > docs/Setup.md\",\"build:watch\":\"yarn build --watch\",\"release\":\"yarn build\",\"lint\":\"eslint src\",\"e2e:depr\":\"yarn lint && jest e2e --config e2e/jest.config.js\",\"cypress\":\"percy exec -- cypress run\",\"e2e\":\"start-server-and-test dev http://localhost:9000/ cypress\",\"e2e-upd\":\"yarn lint && jest e2e -u --config e2e/jest.config.js\",\"dev\":\"webpack serve --config webpack.config.e2e.js\",\"test\":\"yarn lint && jest src/.*\",\"test:watch\":\"jest --watch src\",\"prepublishOnly\":\"yarn build && yarn test\",\"prepare\":\"yarn build\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/knsv/mermaid\"},\"author\":\"Knut Sveidqvist\",\"license\":\"MIT\",\"standard\":{\"ignore\":[\"**/parser/*.js\",\"dist/**/*.js\",\"cypress/**/*.js\"],\"globals\":[\"page\"]},\"dependencies\":{\"@braintree/sanitize-url\":\"^3.1.0\",\"@percy/migrate\":\"^0.11.0\",\"d3\":\"^7.0.0\",\"dagre\":\"^0.8.5\",\"dagre-d3\":\"^0.6.4\",\"dompurify\":\"2.3.0\",\"graphlib\":\"^2.1.8\",\"khroma\":\"^1.4.1\",\"moment-mini\":\"^2.24.0\",\"stylis\":\"^4.0.10\"},\"devDependencies\":{\"@babel/core\":\"^7.14.6\",\"@babel/eslint-parser\":\"^7.14.7\",\"@babel/preset-env\":\"^7.14.7\",\"@babel/register\":\"^7.14.5\",\"@percy/cli\":\"^1.0.0-beta.58\",\"@percy/cypress\":\"^3.1.0\",\"babel-jest\":\"^27.0.6\",\"babel-loader\":\"^8.2.2\",\"coveralls\":\"^3.0.2\",\"css-to-string-loader\":\"^0.1.3\",\"cypress\":\"8.1.0\",\"documentation\":\"13.2.0\",\"eslint\":\"^7.30.0\",\"eslint-config-prettier\":\"^8.3.0\",\"eslint-plugin-prettier\":\"^3.4.0\",\"husky\":\"^7.0.1\",\"identity-obj-proxy\":\"^3.0.0\",\"jest\":\"^27.0.6\",\"jison\":\"^0.4.18\",\"js-base64\":\"3.6.1\",\"moment\":\"^2.23.0\",\"prettier\":\"^2.3.2\",\"start-server-and-test\":\"^1.12.6\",\"terser-webpack-plugin\":\"^4.2.3\",\"webpack\":\"^4.41.2\",\"webpack-cli\":\"^4.7.2\",\"webpack-dev-server\":\"^3.4.1\",\"webpack-node-externals\":\"^3.0.0\"},\"files\":[\"dist\"],\"sideEffects\":[\"**/*.css\",\"**/*.scss\"],\"husky\":{\"hooks\":{\"pre-push\":\"yarn test\"}}}");
+module.exports = JSON.parse("{\"name\":\"mermaid\",\"version\":\"8.12.0\",\"description\":\"Markdownish syntax for generating flowcharts, sequence diagrams, class diagrams, gantt charts and git graphs.\",\"main\":\"dist/mermaid.core.js\",\"keywords\":[\"diagram\",\"markdown\",\"flowchart\",\"sequence diagram\",\"gantt\",\"class diagram\",\"git graph\"],\"scripts\":{\"build:development\":\"webpack --progress --color\",\"build:production\":\"yarn build:development --mode production --config webpack.config.prod.babel.js\",\"build\":\"yarn build:development && yarn build:production\",\"postbuild\":\"documentation build src/mermaidAPI.js src/config.js src/defaultConfig.js --shallow -f md --markdown-toc false > docs/Setup.md\",\"build:watch\":\"yarn build --watch\",\"release\":\"yarn build\",\"lint\":\"eslint src\",\"e2e:depr\":\"yarn lint && jest e2e --config e2e/jest.config.js\",\"cypress\":\"percy exec -- cypress run\",\"e2e\":\"start-server-and-test dev http://localhost:9000/ cypress\",\"e2e-upd\":\"yarn lint && jest e2e -u --config e2e/jest.config.js\",\"dev\":\"webpack serve --config webpack.config.e2e.js\",\"test\":\"yarn lint && jest src/.*\",\"test:watch\":\"jest --watch src\",\"prepublishOnly\":\"yarn build && yarn test\",\"prepare\":\"yarn build\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/knsv/mermaid\"},\"author\":\"Knut Sveidqvist\",\"license\":\"MIT\",\"standard\":{\"ignore\":[\"**/parser/*.js\",\"dist/**/*.js\",\"cypress/**/*.js\"],\"globals\":[\"page\"]},\"dependencies\":{\"@braintree/sanitize-url\":\"^3.1.0\",\"@percy/migrate\":\"^0.11.0\",\"d3\":\"^7.0.0\",\"dagre\":\"^0.8.5\",\"dagre-d3\":\"^0.6.4\",\"dompurify\":\"2.3.0\",\"graphlib\":\"^2.1.8\",\"khroma\":\"^1.4.1\",\"moment-mini\":\"^2.24.0\",\"stylis\":\"^4.0.10\"},\"devDependencies\":{\"@babel/core\":\"^7.14.6\",\"@babel/eslint-parser\":\"^7.14.7\",\"@babel/preset-env\":\"^7.14.7\",\"@babel/register\":\"^7.14.5\",\"@percy/cli\":\"^1.0.0-beta.58\",\"@percy/cypress\":\"^3.1.0\",\"babel-jest\":\"^27.0.6\",\"babel-loader\":\"^8.2.2\",\"coveralls\":\"^3.0.2\",\"css-to-string-loader\":\"^0.1.3\",\"cypress\":\"8.1.0\",\"documentation\":\"13.2.0\",\"eslint\":\"^7.30.0\",\"eslint-config-prettier\":\"^8.3.0\",\"eslint-plugin-prettier\":\"^3.4.0\",\"husky\":\"^7.0.1\",\"identity-obj-proxy\":\"^3.0.0\",\"jest\":\"^27.0.6\",\"jison\":\"^0.4.18\",\"js-base64\":\"3.6.1\",\"moment\":\"^2.23.0\",\"prettier\":\"^2.3.2\",\"start-server-and-test\":\"^1.12.6\",\"terser-webpack-plugin\":\"^4.2.3\",\"webpack\":\"^4.41.2\",\"webpack-cli\":\"^4.7.2\",\"webpack-dev-server\":\"^3.4.1\",\"webpack-node-externals\":\"^3.0.0\"},\"files\":[\"dist\"],\"sideEffects\":[\"**/*.css\",\"**/*.scss\"],\"husky\":{\"hooks\":{\"pre-push\":\"yarn test\"}}}");
 
 /***/ }),
 
@@ -3283,10 +3283,8 @@ var rectWithTitle = function rectWithTitle(parent, node) {
 
 
   var halfPadding = node.padding / 2;
-  Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(descr).attr('transform', 'translate( ' + ( // (titleBox.width - bbox.width) / 2 +
-  bbox.width > titleBox.width ? 0 : (titleBox.width - bbox.width) / 2) + ', ' + (titleBox.height + halfPadding + 5) + ')');
-  Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(text).attr('transform', 'translate( ' + ( // (titleBox.width - bbox.width) / 2 +
-  bbox.width < titleBox.width ? 0 : -(titleBox.width - bbox.width) / 2) + ', ' + 0 + ')'); // Get the size of the label
+  Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(descr).attr('transform', 'translate( ' + (bbox.width > titleBox.width ? 0 : (titleBox.width - bbox.width) / 2) + ', ' + (titleBox.height + halfPadding + 5) + ')');
+  Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(text).attr('transform', 'translate( ' + (bbox.width < titleBox.width ? 0 : -(titleBox.width - bbox.width) / 2) + ', ' + 0 + ')'); // Get the size of the label
   // Bounding box for title and text
 
   bbox = label.node().getBBox(); // Center the label
@@ -25068,6 +25066,7 @@ var mermaid = {
   mermaidAPI: _mermaidAPI__WEBPACK_IMPORTED_MODULE_1__["default"],
   parse: _mermaidAPI__WEBPACK_IMPORTED_MODULE_1__["default"].parse,
   render: _mermaidAPI__WEBPACK_IMPORTED_MODULE_1__["default"].render,
+  renderSSR: _mermaidAPI__WEBPACK_IMPORTED_MODULE_1__["default"].renderSSR,
   init: init,
   initialize: initialize,
   contentLoaded: contentLoaded
@@ -25639,6 +25638,238 @@ var render = function render(id, _txt, cb, container) {
 
   return svgCode;
 };
+/**
+ * Function that renders an svg with a graph from a chart definition. To be used with SSR. Usage example below.
+ *
+ * ```js
+ * mermaidAPI.initialize({
+ *      startOnLoad:false
+ *  });
+ *  $(function(){
+ *      const graphDefinition = 'graph TB\na-->b';
+ *      const cb = function(svgGraph){
+ *          console.log(svgGraph);
+ *      };
+ *      const [svg, bind] = mermaidAPI.render(graphDefinition, el);
+ *  });
+ *```
+ * @param _txt the graph definition
+ * @param container selector to element in which a div with the graph temporarily will be inserted. In one is
+ * provided a hidden div will be inserted in the body of the page instead. The element will be removed when rendering is
+ * completed.
+ * @param document allow callers to pass in document
+ */
+
+
+var renderSSR = function renderSSR(_txt, container) {
+  var document = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : document;
+  _config__WEBPACK_IMPORTED_MODULE_3__["reset"]();
+  var txt = _txt;
+  var id = Date.now();
+  var graphInit = _utils__WEBPACK_IMPORTED_MODULE_44__["default"].detectInit(txt);
+
+  if (graphInit) {
+    _config__WEBPACK_IMPORTED_MODULE_3__["addDirective"](graphInit);
+  }
+
+  var cnf = _config__WEBPACK_IMPORTED_MODULE_3__["getConfig"](); // Check the maximum allowed text size
+
+  if (_txt.length > cnf.maxTextSize) {
+    txt = 'graph TB;a[Maximum text size in diagram exceeded];style a fill:#faa';
+  }
+
+  container.innerHTML = '';
+  Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(container).append('div').attr('id', 'd' + id).attr('style', 'font-family: ' + cnf.fontFamily).append('svg').attr('id', id).attr('width', '100%').attr('xmlns', 'http://www.w3.org/2000/svg').append('g');
+  txt = encodeEntities(txt);
+  var element = Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(container).select('#d' + id).node();
+  var graphType = _utils__WEBPACK_IMPORTED_MODULE_44__["default"].detectType(txt, cnf); // insert inline style into svg
+
+  var svg = element.firstChild;
+  var firstChild = svg.firstChild;
+  var userStyles = ''; // user provided theme CSS
+
+  if (cnf.themeCSS !== undefined) {
+    userStyles += "\n".concat(cnf.themeCSS);
+  } // user provided theme CSS
+
+
+  if (cnf.fontFamily !== undefined) {
+    userStyles += "\n:root { --mermaid-font-family: ".concat(cnf.fontFamily, "}");
+  } // user provided theme CSS
+
+
+  if (cnf.altFontFamily !== undefined) {
+    userStyles += "\n:root { --mermaid-alt-font-family: ".concat(cnf.altFontFamily, "}");
+  } // classDef
+
+
+  if (graphType === 'flowchart' || graphType === 'flowchart-v2' || graphType === 'graph') {
+    var classes = _diagrams_flowchart_flowRenderer__WEBPACK_IMPORTED_MODULE_12__["default"].getClasses(txt);
+    var htmlLabels = cnf.htmlLabels || cnf.flowchart.htmlLabels;
+
+    for (var className in classes) {
+      if (htmlLabels) {
+        userStyles += "\n.".concat(className, " > * { ").concat(classes[className].styles.join(' !important; '), " !important; }");
+        userStyles += "\n.".concat(className, " span { ").concat(classes[className].styles.join(' !important; '), " !important; }");
+      } else {
+        userStyles += "\n.".concat(className, " path { ").concat(classes[className].styles.join(' !important; '), " !important; }");
+        userStyles += "\n.".concat(className, " rect { ").concat(classes[className].styles.join(' !important; '), " !important; }");
+        userStyles += "\n.".concat(className, " polygon { ").concat(classes[className].styles.join(' !important; '), " !important; }");
+        userStyles += "\n.".concat(className, " ellipse { ").concat(classes[className].styles.join(' !important; '), " !important; }");
+        userStyles += "\n.".concat(className, " circle { ").concat(classes[className].styles.join(' !important; '), " !important; }");
+
+        if (classes[className].textStyles) {
+          userStyles += "\n.".concat(className, " tspan { ").concat(classes[className].textStyles.join(' !important; '), " !important; }");
+        }
+      }
+    }
+  } // log.warn(cnf.themeVariables);
+
+
+  var stylis = function stylis(selector, styles) {
+    return Object(stylis__WEBPACK_IMPORTED_MODULE_1__["serialize"])(Object(stylis__WEBPACK_IMPORTED_MODULE_1__["compile"])("".concat(selector, "{").concat(styles, "}")), stylis__WEBPACK_IMPORTED_MODULE_1__["stringify"]);
+  };
+
+  var rules = stylis("#".concat(id), Object(_styles__WEBPACK_IMPORTED_MODULE_42__["default"])(graphType, userStyles, cnf.themeVariables));
+  var style1 = document.createElement('style');
+  style1.innerHTML = "#".concat(id, " ") + rules;
+  svg.insertBefore(style1, firstChild);
+
+  try {
+    switch (graphType) {
+      case 'git':
+        cnf.flowchart.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_git_gitGraphRenderer__WEBPACK_IMPORTED_MODULE_19__["default"].setConf(cnf.git);
+        _diagrams_git_gitGraphRenderer__WEBPACK_IMPORTED_MODULE_19__["default"].draw(txt, id, false);
+        break;
+
+      case 'flowchart':
+        cnf.flowchart.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_flowchart_flowRenderer__WEBPACK_IMPORTED_MODULE_12__["default"].setConf(cnf.flowchart);
+        _diagrams_flowchart_flowRenderer__WEBPACK_IMPORTED_MODULE_12__["default"].draw(txt, id, false);
+        break;
+
+      case 'flowchart-v2':
+        cnf.flowchart.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_flowchart_flowRenderer_v2__WEBPACK_IMPORTED_MODULE_13__["default"].setConf(cnf.flowchart);
+        _diagrams_flowchart_flowRenderer_v2__WEBPACK_IMPORTED_MODULE_13__["default"].draw(txt, id, false);
+        break;
+
+      case 'sequence':
+        cnf.sequence.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+
+        if (cnf.sequenceDiagram) {
+          // backwards compatibility
+          _diagrams_sequence_sequenceRenderer__WEBPACK_IMPORTED_MODULE_32__["default"].setConf(Object.assign(cnf.sequence, cnf.sequenceDiagram));
+          console.error('`mermaid config.sequenceDiagram` has been renamed to `config.sequence`. Please update your mermaid config.');
+        } else {
+          _diagrams_sequence_sequenceRenderer__WEBPACK_IMPORTED_MODULE_32__["default"].setConf(cnf.sequence);
+        }
+
+        _diagrams_sequence_sequenceRenderer__WEBPACK_IMPORTED_MODULE_32__["default"].draw(txt, id);
+        break;
+
+      case 'gantt':
+        cnf.gantt.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_gantt_ganttRenderer__WEBPACK_IMPORTED_MODULE_16__["default"].setConf(cnf.gantt);
+        _diagrams_gantt_ganttRenderer__WEBPACK_IMPORTED_MODULE_16__["default"].draw(txt, id);
+        break;
+
+      case 'class':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_class_classRenderer__WEBPACK_IMPORTED_MODULE_5__["default"].setConf(cnf.class);
+        _diagrams_class_classRenderer__WEBPACK_IMPORTED_MODULE_5__["default"].draw(txt, id);
+        break;
+
+      case 'classDiagram':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_class_classRenderer_v2__WEBPACK_IMPORTED_MODULE_6__["default"].setConf(cnf.class);
+        _diagrams_class_classRenderer_v2__WEBPACK_IMPORTED_MODULE_6__["default"].draw(txt, id);
+        break;
+
+      case 'state':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_state_stateRenderer__WEBPACK_IMPORTED_MODULE_35__["default"].setConf(cnf.state);
+        _diagrams_state_stateRenderer__WEBPACK_IMPORTED_MODULE_35__["default"].draw(txt, id);
+        break;
+
+      case 'stateDiagram':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_state_stateRenderer_v2__WEBPACK_IMPORTED_MODULE_36__["default"].setConf(cnf.state);
+        _diagrams_state_stateRenderer_v2__WEBPACK_IMPORTED_MODULE_36__["default"].draw(txt, id);
+        break;
+
+      case 'info':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        _diagrams_info_infoRenderer__WEBPACK_IMPORTED_MODULE_22__["default"].setConf(cnf.class);
+        _diagrams_info_infoRenderer__WEBPACK_IMPORTED_MODULE_22__["default"].draw(txt, id, _package_json__WEBPACK_IMPORTED_MODULE_2__.version);
+        break;
+
+      case 'pie':
+        //cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        //pieRenderer.setConf(cnf.pie);
+        _diagrams_pie_pieRenderer__WEBPACK_IMPORTED_MODULE_26__["default"].draw(txt, id, _package_json__WEBPACK_IMPORTED_MODULE_2__.version);
+        break;
+
+      case 'er':
+        _diagrams_er_erRenderer__WEBPACK_IMPORTED_MODULE_9__["default"].setConf(cnf.er);
+        _diagrams_er_erRenderer__WEBPACK_IMPORTED_MODULE_9__["default"].draw(txt, id, _package_json__WEBPACK_IMPORTED_MODULE_2__.version);
+        break;
+
+      case 'journey':
+        _diagrams_user_journey_journeyRenderer__WEBPACK_IMPORTED_MODULE_38__["default"].setConf(cnf.journey);
+        _diagrams_user_journey_journeyRenderer__WEBPACK_IMPORTED_MODULE_38__["default"].draw(txt, id, _package_json__WEBPACK_IMPORTED_MODULE_2__.version);
+        break;
+
+      case 'requirement':
+        _diagrams_requirement_requirementRenderer__WEBPACK_IMPORTED_MODULE_29__["default"].setConf(cnf.requirement);
+        _diagrams_requirement_requirementRenderer__WEBPACK_IMPORTED_MODULE_29__["default"].draw(txt, id, _package_json__WEBPACK_IMPORTED_MODULE_2__.version);
+        break;
+    }
+  } catch (e) {
+    // errorRenderer.setConf(cnf.class);
+    _errorRenderer__WEBPACK_IMPORTED_MODULE_40__["default"].draw(id, _package_json__WEBPACK_IMPORTED_MODULE_2__.version);
+    throw e;
+  }
+
+  Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(container).select("[id=\"".concat(id, "\"]")).selectAll('foreignobject > *').attr('xmlns', 'http://www.w3.org/1999/xhtml'); // Fix for when the base tag is used
+
+  var svgCode = Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(container).select('#d' + id).node().innerHTML;
+  _logger__WEBPACK_IMPORTED_MODULE_41__["log"].debug('cnf.arrowMarkerAbsolute', cnf.arrowMarkerAbsolute);
+
+  if (!cnf.arrowMarkerAbsolute || cnf.arrowMarkerAbsolute === 'false') {
+    svgCode = svgCode.replace(/marker-end="url\(.*?#/g, 'marker-end="url(#', 'g');
+  }
+
+  svgCode = decodeEntities(svgCode); // Fix for when the br tag is used
+
+  svgCode = svgCode.replace(/<br>/g, '<br/>');
+  var bind;
+
+  switch (graphType) {
+    case 'flowchart':
+    case 'flowchart-v2':
+      bind = _diagrams_flowchart_flowDb__WEBPACK_IMPORTED_MODULE_11__["default"].bindFunctions;
+      break;
+
+    case 'gantt':
+      bind = _diagrams_gantt_ganttDb__WEBPACK_IMPORTED_MODULE_15__["default"].bindFunctions;
+      break;
+
+    case 'class':
+    case 'classDiagram':
+      bind = _diagrams_class_classDb__WEBPACK_IMPORTED_MODULE_4__["default"].bindFunctions;
+      break;
+  }
+
+  var node = Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(container).select('#d' + id).node();
+
+  if (node !== null && typeof node.remove === 'function') {
+    Object(d3__WEBPACK_IMPORTED_MODULE_0__["select"])(container).select('#d' + id).node().remove();
+  }
+
+  return [svgCode, bind];
+};
 
 var currentDirective = {};
 
@@ -25782,6 +26013,7 @@ function initialize(options) {
 
 var mermaidAPI = Object.freeze({
   render: render,
+  renderSSR: renderSSR,
   parse: parse,
   parseDirective: parseDirective,
   initialize: initialize,

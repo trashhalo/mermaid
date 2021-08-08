@@ -197,6 +197,7 @@ export const decodeEntities = function (text) {
 
   return txt;
 };
+
 /**
  * Function that renders an svg with a graph from a chart definition. Usage example below.
  *
@@ -494,6 +495,250 @@ const render = function (id, _txt, cb, container) {
   return svgCode;
 };
 
+/**
+ * Function that renders an svg with a graph from a chart definition. To be used with SSR. Usage example below.
+ *
+ * ```js
+ * mermaidAPI.initialize({
+ *      startOnLoad:false
+ *  });
+ *  $(function(){
+ *      const graphDefinition = 'graph TB\na-->b';
+ *      const cb = function(svgGraph){
+ *          console.log(svgGraph);
+ *      };
+ *      const [svg, bind] = mermaidAPI.render(graphDefinition, el);
+ *  });
+ *```
+ * @param _txt the graph definition
+ * @param container selector to element in which a div with the graph temporarily will be inserted. In one is
+ * provided a hidden div will be inserted in the body of the page instead. The element will be removed when rendering is
+ * completed.
+ * @param document allow callers to pass in document
+ */
+const renderSSR = function (_txt, container, document = document) {
+  configApi.reset();
+  let txt = _txt;
+  const id = Date.now();
+  const graphInit = utils.detectInit(txt);
+  if (graphInit) {
+    configApi.addDirective(graphInit);
+  }
+
+  let cnf = configApi.getConfig();
+
+  // Check the maximum allowed text size
+  if (_txt.length > cnf.maxTextSize) {
+    txt = 'graph TB;a[Maximum text size in diagram exceeded];style a fill:#faa';
+  }
+
+  container.innerHTML = '';
+
+  select(container)
+    .append('div')
+    .attr('id', 'd' + id)
+    .attr('style', 'font-family: ' + cnf.fontFamily)
+    .append('svg')
+    .attr('id', id)
+    .attr('width', '100%')
+    .attr('xmlns', 'http://www.w3.org/2000/svg')
+    .append('g');
+
+  txt = encodeEntities(txt);
+
+  const element = select(container).select('#d' + id).node();
+  const graphType = utils.detectType(txt, cnf);
+
+  // insert inline style into svg
+  const svg = element.firstChild;
+  const firstChild = svg.firstChild;
+
+  let userStyles = '';
+  // user provided theme CSS
+  if (cnf.themeCSS !== undefined) {
+    userStyles += `\n${cnf.themeCSS}`;
+  }
+  // user provided theme CSS
+  if (cnf.fontFamily !== undefined) {
+    userStyles += `\n:root { --mermaid-font-family: ${cnf.fontFamily}}`;
+  }
+  // user provided theme CSS
+  if (cnf.altFontFamily !== undefined) {
+    userStyles += `\n:root { --mermaid-alt-font-family: ${cnf.altFontFamily}}`;
+  }
+
+  // classDef
+  if (graphType === 'flowchart' || graphType === 'flowchart-v2' || graphType === 'graph') {
+    const classes = flowRenderer.getClasses(txt);
+    const htmlLabels = cnf.htmlLabels || cnf.flowchart.htmlLabels;
+    for (const className in classes) {
+      if (htmlLabels) {
+        userStyles += `\n.${className} > * { ${classes[className].styles.join(
+          ' !important; '
+        )} !important; }`;
+        userStyles += `\n.${className} span { ${classes[className].styles.join(
+          ' !important; '
+        )} !important; }`;
+      } else {
+        userStyles += `\n.${className} path { ${classes[className].styles.join(
+          ' !important; '
+        )} !important; }`;
+        userStyles += `\n.${className} rect { ${classes[className].styles.join(
+          ' !important; '
+        )} !important; }`;
+        userStyles += `\n.${className} polygon { ${classes[className].styles.join(
+          ' !important; '
+        )} !important; }`;
+        userStyles += `\n.${className} ellipse { ${classes[className].styles.join(
+          ' !important; '
+        )} !important; }`;
+        userStyles += `\n.${className} circle { ${classes[className].styles.join(
+          ' !important; '
+        )} !important; }`;
+        if (classes[className].textStyles) {
+          userStyles += `\n.${className} tspan { ${classes[className].textStyles.join(
+            ' !important; '
+          )} !important; }`;
+        }
+      }
+    }
+  }
+
+  // log.warn(cnf.themeVariables);
+
+  const stylis = (selector, styles) => serialize(compile(`${selector}{${styles}}`), stringify);
+  const rules = stylis(`#${id}`, getStyles(graphType, userStyles, cnf.themeVariables));
+
+  const style1 = document.createElement('style');
+  style1.innerHTML = `#${id} ` + rules;
+  svg.insertBefore(style1, firstChild);
+
+  try {
+    switch (graphType) {
+      case 'git':
+        cnf.flowchart.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        gitGraphRenderer.setConf(cnf.git);
+        gitGraphRenderer.draw(txt, id, false);
+        break;
+      case 'flowchart':
+        cnf.flowchart.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        flowRenderer.setConf(cnf.flowchart);
+        flowRenderer.draw(txt, id, false);
+        break;
+      case 'flowchart-v2':
+        cnf.flowchart.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        flowRendererV2.setConf(cnf.flowchart);
+        flowRendererV2.draw(txt, id, false);
+        break;
+      case 'sequence':
+        cnf.sequence.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        if (cnf.sequenceDiagram) {
+          // backwards compatibility
+          sequenceRenderer.setConf(Object.assign(cnf.sequence, cnf.sequenceDiagram));
+          console.error(
+            '`mermaid config.sequenceDiagram` has been renamed to `config.sequence`. Please update your mermaid config.'
+          );
+        } else {
+          sequenceRenderer.setConf(cnf.sequence);
+        }
+        sequenceRenderer.draw(txt, id);
+        break;
+      case 'gantt':
+        cnf.gantt.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        ganttRenderer.setConf(cnf.gantt);
+        ganttRenderer.draw(txt, id);
+        break;
+      case 'class':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        classRenderer.setConf(cnf.class);
+        classRenderer.draw(txt, id);
+        break;
+      case 'classDiagram':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        classRendererV2.setConf(cnf.class);
+        classRendererV2.draw(txt, id);
+        break;
+      case 'state':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        stateRenderer.setConf(cnf.state);
+        stateRenderer.draw(txt, id);
+        break;
+      case 'stateDiagram':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        stateRendererV2.setConf(cnf.state);
+        stateRendererV2.draw(txt, id);
+        break;
+      case 'info':
+        cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        infoRenderer.setConf(cnf.class);
+        infoRenderer.draw(txt, id, pkg.version);
+        break;
+      case 'pie':
+        //cnf.class.arrowMarkerAbsolute = cnf.arrowMarkerAbsolute;
+        //pieRenderer.setConf(cnf.pie);
+        pieRenderer.draw(txt, id, pkg.version);
+        break;
+      case 'er':
+        erRenderer.setConf(cnf.er);
+        erRenderer.draw(txt, id, pkg.version);
+        break;
+      case 'journey':
+        journeyRenderer.setConf(cnf.journey);
+        journeyRenderer.draw(txt, id, pkg.version);
+        break;
+      case 'requirement':
+        requirementRenderer.setConf(cnf.requirement);
+        requirementRenderer.draw(txt, id, pkg.version);
+        break;
+    }
+  } catch (e) {
+    // errorRenderer.setConf(cnf.class);
+    errorRenderer.draw(id, pkg.version);
+    throw e;
+  }
+
+  select(container).select(`[id="${id}"]`)
+    .selectAll('foreignobject > *')
+    .attr('xmlns', 'http://www.w3.org/1999/xhtml');
+
+  // Fix for when the base tag is used
+  let svgCode = select(container).select('#d' + id).node().innerHTML;
+  log.debug('cnf.arrowMarkerAbsolute', cnf.arrowMarkerAbsolute);
+  if (!cnf.arrowMarkerAbsolute || cnf.arrowMarkerAbsolute === 'false') {
+    svgCode = svgCode.replace(/marker-end="url\(.*?#/g, 'marker-end="url(#', 'g');
+  }
+
+  svgCode = decodeEntities(svgCode);
+
+  // Fix for when the br tag is used
+  svgCode = svgCode.replace(/<br>/g, '<br/>');
+
+  let bind;
+
+  switch (graphType) {
+    case 'flowchart':
+    case 'flowchart-v2':
+      bind = flowDb.bindFunctions;
+      break;
+    case 'gantt':
+      bind = ganttDb.bindFunctions;
+      break;
+    case 'class':
+    case 'classDiagram':
+      bind = classDb.bindFunctions;
+      break;
+  }
+
+  const node = select(container).select('#d' + id).node();
+  if (node !== null && typeof node.remove === 'function') {
+    select(container).select('#d' + id)
+      .node()
+      .remove();
+  }
+
+  return [svgCode, bind];
+};
+
 let currentDirective = {};
 
 const parseDirective = function (p, statement, context, type) {
@@ -631,6 +876,7 @@ function initialize(options) {
 
 const mermaidAPI = Object.freeze({
   render,
+  renderSSR,
   parse,
   parseDirective,
   initialize,
